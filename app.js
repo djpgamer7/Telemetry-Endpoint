@@ -11,6 +11,7 @@ const port = 3000;
 let telemetry = {
     rocket: {
         altitude: 0,
+        //Getter and Setter added to update the web request when the data has changed, repeated for all values
         get alt() {
             return this.altitude;
         },
@@ -45,12 +46,12 @@ let telemetry = {
                 res.send(telemetry);
             })
         },
-        veloicty: 0,
+        velocity: 0,
         get vel() {
-            return this.veloicty;
+            return this.velocity;
         },
         set vel(val) {
-            this.veloicty = val;
+            this.velocity = val;
             console.log(`Velocity changed to: ${val}`)
             app.get('/api/telemetry', (req, res) => {
                 res.send(telemetry);
@@ -64,9 +65,8 @@ app.get('/api/telemetry', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}...`);
+    console.log(`Sending data on port ${port}...`);
 });
-
 
 app.get('/api/telemetry/:rocket', (req, res) => {
 
